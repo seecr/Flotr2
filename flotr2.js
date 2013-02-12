@@ -7152,7 +7152,6 @@ Flotr.addPlugin('titles', {
           this.plotWidth, 'px;" class="flotr-subtitle">', options.subtitle, '</div>'
         );
 
-      html.push('</div>');
       
       html.push('<div class="flotr-axis-title" style="font-weight:bold;">');
       
@@ -7188,6 +7187,7 @@ Flotr.addPlugin('titles', {
           'px;right:0;text-align:', a.y2.options.titleAlign, ';" class="flotr-axis-title flotr-axis-title-y2">', a.y2.options.title, '</div>'
         );
       
+      html.push('</div>');
       html = html.join('');
 
       var div = D.create('div');
