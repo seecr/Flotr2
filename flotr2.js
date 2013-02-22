@@ -5855,16 +5855,13 @@ Flotr.addPlugin('hit', {
   },
 
   closest : function (mouse) {
-
     var
       series    = this.series,
       options   = this.options,
       relX      = mouse.relX,
       relY      = mouse.relY,
       compare   = Number.MAX_VALUE,
-      compareX  = Number.MAX_VALUE,
       closest   = {},
-      closestX  = {},
       check     = false,
       serie, data,
       distance, distanceX, distanceY,
@@ -5881,13 +5878,9 @@ Flotr.addPlugin('hit', {
       o.y = y;
       check = true;
     }
-
     for (i = 0; i < series.length; i++) {
-
       serie = series[i];
       data = serie.data;
-      mouseX = serie.xaxis.p2d(relX);
-      mouseY = serie.yaxis.p2d(relY);
 
       for (j = data.length; j--;) {
 
@@ -5899,8 +5892,8 @@ Flotr.addPlugin('hit', {
         // don't check if the point isn't visible in the current range
         if (x < serie.xaxis.min || x > serie.xaxis.max) continue;
 
-        distanceX = Math.abs(x - mouseX);
-        distanceY = Math.abs(y - mouseY);
+        distanceX = Math.abs(serie.xaxis.d2p(x) - relX);
+        distanceY = Math.abs(serie.yaxis.d2p(y) - relY);
 
         // Skip square root for speed
         distance = distanceX * distanceX + distanceY * distanceY;
@@ -5908,11 +5901,6 @@ Flotr.addPlugin('hit', {
         if (distance < compare) {
           compare = distance;
           setClosest(closest);
-        }
-
-        if (distanceX < compareX) {
-          compareX = distanceX;
-          setClosest(closestX);
         }
       }
     }
