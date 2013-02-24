@@ -5861,7 +5861,9 @@ Flotr.addPlugin('hit', {
       relX      = mouse.relX,
       relY      = mouse.relY,
       compare   = Number.MAX_VALUE,
+      compareX   = Number.MAX_VALUE,
       closest   = {},
+      closestX  = {},
       check     = false,
       serie, data,
       distance, distanceX, distanceY,
@@ -5901,6 +5903,11 @@ Flotr.addPlugin('hit', {
         if (distance < compare) {
           compare = distance;
           setClosest(closest);
+        }
+
+        if (distanceX < compareX) {
+          compareX = distanceX;
+          setClosest(closestX);
         }
       }
     }
