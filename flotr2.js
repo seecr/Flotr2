@@ -3856,7 +3856,7 @@ Flotr.addType('bars', {
     }
   },
 
-  getBarGeometry : function (x, y, options) {
+  getBarGeometry : function (x, y, options, ignoreStacked) {
 
     var
       horizontal    = options.horizontal,
@@ -3881,7 +3881,7 @@ Flotr.addType('bars', {
     }
 
     // Stacked bars
-    if (stack) {
+    if (stack && !ignoreStacked) {
       stackValue          = yValue > 0 ? stack.positive : stack.negative;
       stackOffset         = stackValue[xValue] || stackOffset;
       stackValue[xValue]  = stackOffset + yValue;
@@ -3950,7 +3950,7 @@ Flotr.addType('bars', {
     var
       context     = options.context,
       args        = options.args,
-      geometry    = this.getBarGeometry(args.x, args.y, options),
+      geometry    = this.getBarGeometry(args.x, args.y, options, true),
       left        = geometry.left,
       top         = geometry.top,
       width       = geometry.width,
@@ -3981,7 +3981,7 @@ Flotr.addType('bars', {
     var
       context     = options.context,
       args        = options.args,
-      geometry    = this.getBarGeometry(args.x, args.y, options),
+      geometry    = this.getBarGeometry(args.x, args.y, options, true),
       left        = geometry.left,
       width       = geometry.width,
       top         = geometry.top,
