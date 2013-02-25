@@ -3905,7 +3905,7 @@ Flotr.addType('bars', {
       yScale    : yScale,
       top       : top,
       left      : Math.min(left, right) - lineWidth / 2,
-      width     : Math.abs(right - left) - lineWidth,
+      width     : Math.abs(right - left) + lineWidth,
       height    : bottom - top
     };
   },
